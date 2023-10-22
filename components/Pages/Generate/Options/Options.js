@@ -1,60 +1,57 @@
 "use client";
 import React from "react";
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion"; // Import motion and AnimatePresence
+
 import Providers from "./Providers/Providers";
 import { ProviderOptions } from "./Providers/ProviderOptions";
+
 const Options = () => {
   const [selectedProvider, setSelectedProvider] = useState(-1);
+  const [selectedOptions, setSelectedOptions] = useState([]);
+
   const providers = [
     {
       name: "ISRO",
       logo: "isro-logo.png",
-      options: [
-        "Spacecrafts",
-        "Stations",
-        "Launchers",
-        "Temperatures",
-        "Astronomy",
-        "Astrophysics",
-      ],
+      options: ["Spacecrafts", "Launchers", "Satellites", "Space Centers"],
     },
     {
       name: "NASA",
       logo: "nasa-logo.png",
-      options: [
-        "Missions",
-        "Astronauts",
-        "Telescopes",
-        "Planets",
-        "Stars",
-        "Galaxies",
-        "Moon",
-        "Mars",
-        "Solar System",
-      ],
+      options: ["Solar Flares", "Geomagnetic Storm"],
     },
     {
-      name: "Google Earth",
-      logo: "google-earth-logo.png",
-      options: [
-        "Satellite imagery",
-        "3D models",
-        "Street view",
-        "Maps",
-        "Terrain",
-        "Climate",
-      ],
+      name: "SpaceX",
+      logo: "spacex-logo.png",
+      options: ["Rockets", "Missions"],
     },
   ];
 
   return (
-    <div className="h-full w-full">
+    <div className="flex flex-col items-center justify-center h-full w-full gap-10">
       <Providers
         providers={providers}
         selected={selectedProvider}
         setSelected={setSelectedProvider}
       />
-      <ProviderOptions provider={providers[selectedProvider]} />
+      <AnimatePresence mode="wait">
+        {selectedProvider !== -1 && (
+          <motion.div
+            initial={{ height: 0 }}
+            animate={{ height: "100%" }}
+            exit={{ height: 0 }}
+            transition={{ duration: 0.5 }}
+            className="relative w-full bg-white overflow-hidden rounded-xl"
+          >
+            <ProviderOptions
+              selectedOptions={selectedOptions}
+              setSelectedOptions={setSelectedOptions}
+              provider={providers[selectedProvider]}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
