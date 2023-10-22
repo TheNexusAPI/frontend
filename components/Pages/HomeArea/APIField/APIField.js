@@ -7,7 +7,7 @@ import { FiCopy } from "react-icons/fi";
 const APIField = ({ text }) => {
   const handleCopyClick = () => {
     const textarea = document.createElement("textarea");
-    textarea.value = `https://localhost:3000/${text}`;
+    textarea.value = `https://thenexusapi.com/${text}`;
     document.body.appendChild(textarea);
     textarea.select();
     document.execCommand("copy");
