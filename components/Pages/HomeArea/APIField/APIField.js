@@ -7,7 +7,7 @@ import { FiCopy } from "react-icons/fi";
 const APIField = ({ text }) => {
   const handleCopyClick = () => {
     const textarea = document.createElement("textarea");
-    textarea.value = text;
+    textarea.value = `https://thenexusapi.com/${text}`;
     document.body.appendChild(textarea);
     textarea.select();
     document.execCommand("copy");
@@ -15,10 +15,15 @@ const APIField = ({ text }) => {
   };
 
   return (
-    <div className="w-full items-center justify-center flex ">
-      <div className="bg-white drop-shadow-2xl flex items-center justify-end text-black w-3/4 py-2 pr-2 h-9 text-lg rounded-2xl text-md cursor-pointer">
-        <span className="px-8">{text}</span>
-        <div>
+    <div className="flex flex-col items-start justify-start gap-2 w-full">
+      <div className="text-4xl font-semibold bg-gradient-to-r from-[#a059e6] via-[#5df4ff] to-[#c1efff] inline-block text-transparent bg-clip-text">
+        thenexusapi.com/
+      </div>
+      <div className="w-full flex flex-row items-center justify-center gap-2 py-1 pr-2 rounded-2xl bg-white ">
+        <div className="overflow-scroll drop-shadow-2xl flex items-center text-black w-full  cursor-pointer">
+          <span className="px-8 w-full">{text}</span>
+        </div>
+        <div className="bg-white p-1 rounded-full">
           <Tooltip onClick={handleCopyClick} title="Copy">
             <IconButton>
               <FiCopy />

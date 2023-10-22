@@ -2,13 +2,12 @@
 import React from "react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion"; // Import motion and AnimatePresence
-
+import convertTextToKey from "@/utils/db";
 import Providers from "./Providers/Providers";
 import { ProviderOptions } from "./Providers/ProviderOptions";
 
-const Options = () => {
+const Options = ({ selectedOptions, setSelectedOptions }) => {
   const [selectedProvider, setSelectedProvider] = useState(-1);
-  const [selectedOptions, setSelectedOptions] = useState([]);
 
   const providers = [
     {

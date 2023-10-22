@@ -15,6 +15,7 @@ export default function Home() {
       });
     }
   };
+
   return (
     <div className="bg-space bg-no-repeat bg-cover bg-opacity-30 h-screen w-screen font-main">
       <Navbar />
