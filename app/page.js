@@ -6,20 +6,48 @@ import React, { useRef } from "react";
 
 export default function Home() {
   const generateRef = useRef(null);
+  const homeRef = useRef(null);
 
-  const handleGenerateClick = () => {
-    if (generateRef.current) {
-      generateRef.current.scrollIntoView({
+  const scrollTo = (ref) => {
+    if (ref.current) {
+      ref.current.scrollIntoView({
         behavior: "smooth",
         block: "start",
       });
     }
   };
+  const handleNavigation = (e) => {
+    switch (e.target.innerText) {
+      case "Home":
+        console.log("Going home");
+        scrollTo(homeRef);
+        break;
+      case "Documentation":
+        window.open(
+          "https://app.theneo.io/70f5220e-c77a-4e13-9948-b2c86694ebd5/nexusapi/nexusapi-documentation",
+          "_blank"
+        );
+        break;
+      case "Pricing":
+        break;
+      case "About Us":
+        break;
+      default:
+        break;
+    }
+  };
+
+  const handleGenerateClick = () => {
+    scrollTo(generateRef);
+  };
 
   return (
     <div className="bg-space bg-no-repeat bg-cover bg-opacity-30 h-screen w-screen font-main">
-      <Navbar />
-      <div className="h-screen w-screen flex items-center justify-center">
+      <Navbar handleNavigation={handleNavigation} />
+      <div
+        ref={homeRef}
+        className="h-screen w-screen flex items-center justify-center"
+      >
         <HomeArea handleGenerateClick={handleGenerateClick} />
       </div>
       <div
