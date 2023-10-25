@@ -18,6 +18,10 @@ export default function Home() {
   };
   const handleNavigation = (e) => {
     switch (e.target.innerText) {
+      case "NexusAPI":
+        console.log("Going to..");
+        scrollTo(homeRef);
+        break;
       case "Home":
         console.log("Going home");
         scrollTo(homeRef);

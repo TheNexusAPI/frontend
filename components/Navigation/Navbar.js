@@ -1,12 +1,15 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import NexusAPILogo from "../NexusAPI_Logo/NexusAPILogo";
 import LoginIcon from "../Icons/LoginIcon/LoginIcon";
 import { LuExternalLink } from "react-icons/lu";
 
+
 const Navbar = ({ handleNavigation }) => {
+  const homeRef = useRef(); 
   const [scrolled, setScrolled] = useState(false);
+  
   useEffect(() => {
     const onScroll = () => {
       if (window.scrollY > 0) {
@@ -23,6 +26,15 @@ const Navbar = ({ handleNavigation }) => {
     };
   }, []);
 
+  const handleNexusAPIClick = () => {
+    if (homeRef.current) {
+      homeRef.current.scrollIntoView({behavior: "Smooth"});
+    }
+      else {
+        handleNavigation();
+      }
+  }
+
   return (
     <nav
       className={
@@ -32,7 +44,10 @@ const Navbar = ({ handleNavigation }) => {
       }
     >
       <div className="flex flex-row justify-between items-center">
-        <NexusAPILogo />
+        <NexusAPILogo 
+        handleNavigation={handleNavigation} 
+        homeRef={homeRef}
+        />
         <div className="flex flex-row justify-between items-center gap-10 text-md mr-16">
           <div
             onClick={handleNavigation}
