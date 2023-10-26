@@ -20,7 +20,7 @@ const APIField = ({ text }) => {
         thenexusapi.com/
       </div>
       <div className="w-full flex flex-row items-center justify-center gap-2 py-1 pr-2 rounded-2xl bg-white ">
-        <div className="overflow-scroll drop-shadow-2xl flex items-center text-black w-full  cursor-pointer">
+        <div className="overflow-scroll drop-shadow-2xl flex items-center text-black w-full  cursor-pointer whitespace-pre">
           <span className="px-8 w-full">{text}</span>
         </div>
         <div className="bg-white p-1 rounded-full">
